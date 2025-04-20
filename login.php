@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $stmt = $conn->prepare("SELECT * FROM registration WHERE email = '$email'");
-    $stmt->execute();
+    $stmt = $conn->prepare("SELECT * FROM registration WHERE email = ?");
+    $stmt->execute([$email]);
     $user = $stmt->fetch();
 
     if ($user && $password = $user['password']){
